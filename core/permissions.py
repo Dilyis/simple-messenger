@@ -19,5 +19,6 @@ class BaseCustomPermission(permissions.BasePermission):
         return any((
             self._is_admin(request),
             view.action in self.anonymous_actions,
-            view.action in self.authorized_actions and self._is_authenticated(request)
+            view.action in self.authorized_actions and self._is_authenticated(
+                request)
         ))

@@ -9,6 +9,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.generics import GenericAPIView
 from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response
+from rest_framework.status import HTTP_201_CREATED, HTTP_200_OK
 from rest_framework.viewsets import GenericViewSet
 from rest_framework_simplejwt.tokens import RefreshToken
 
@@ -29,8 +30,8 @@ class UserViewSet(mixins.CreateModelMixin,
 
     @swagger_auto_schema(
         request_body=CreateUserSerializer,
-        responses={"200": openapi.Response(
-            description="Пользователь",
+        responses={HTTP_201_CREATED: openapi.Response(
+            description="User",
             schema=UserSerializer)})
     @parser_classes([MultiPartParser])
     def create(self, request, *args, **kwargs):
@@ -45,12 +46,12 @@ class UserViewSet(mixins.CreateModelMixin,
             'first_name': user.first_name,
             'last_name': user.last_name
         }
-        return Response(data)
+        return Response(data, HTTP_201_CREATED)
 
     @action(methods=['get'], detail=False, url_path='current', url_name='current')
     @swagger_auto_schema(
-        responses={"200": openapi.Response(
-            description="Текущий пользователь",
+        responses={HTTP_200_OK: openapi.Response(
+            description="Current user",
             schema=UserSerializer)
         })
     def current(self, request, *args, **kwargs):
@@ -64,7 +65,7 @@ class LoginView(GenericAPIView):
 
     @swagger_auto_schema(
         request_body=LoginSerializer,
-        responses={"200": openapi.Response(
+        responses={HTTP_200_OK: openapi.Response(
             description="Параметры",
             schema=helpers.obj({
                 "refresh": helpers.string(),

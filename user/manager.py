@@ -32,7 +32,8 @@ class EmailUserManager(BaseUserManager):
 
     def get_by_natural_key(self, username):
         """
-        By default, Django does a case-sensitive check on usernames. This is Wrong™.
+        By default, Django does a case-sensitive check on usernames.
+        This is Wrong™.
         Overriding this method fixes it.
         """
         return self.get(**{self.model.USERNAME_FIELD + '__iexact': username})

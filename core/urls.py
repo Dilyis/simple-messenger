@@ -36,7 +36,7 @@ docs_urls = [
 urlpatterns = [
     path('docs/', include(docs_urls)),
     path('admin/', admin.site.urls),
-    path('api/v1/login/', LoginView.as_view()),
+    path('api/v1/login/', LoginView.as_view(), name='users-login'),
     path('api/v1/users/', include('user.urls')),
     path('api/v1/users/<int:pk>/messages/', UserMessagesViewSet.as_view()),
     path('api/v1/messages/', include('message.urls')),

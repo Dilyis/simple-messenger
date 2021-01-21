@@ -37,8 +37,8 @@ REST_FRAMEWORK = {
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
 }
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',  # default backend for django-admin
-    'user.authentication.EmailAuthBackend',  # custom backend for authenticating with email
+    'django.contrib.auth.backends.ModelBackend',
+    'user.authentication.EmailAuthBackend',
 )
 
 SIMPLE_JWT = {

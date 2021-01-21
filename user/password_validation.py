@@ -22,7 +22,8 @@ class UppercaseValidator:
     def validate(self, password, user=None):
         if not re.findall('[A-Z]', password):
             raise ValidationError(
-                _("The password must contain at least 1 uppercase letter, A-Z."),
+                _("The password must contain at least 1 uppercase letter, "
+                  "A-Z."),
                 code='password_no_upper',
             )
 
@@ -36,7 +37,8 @@ class LowercaseValidator:
     def validate(self, password, user=None):
         if not re.findall('[a-z]', password):
             raise ValidationError(
-                _("The password must contain at least 1 lowercase letter, a-z."),
+                _("The password must contain at least 1 lowercase letter,"
+                  " a-z."),
                 code='password_no_lower',
             )
 

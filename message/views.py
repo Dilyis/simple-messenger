@@ -6,6 +6,7 @@ from rest_framework.decorators import action
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import mixins
+from rest_framework.status import HTTP_200_OK
 from rest_framework.viewsets import GenericViewSet
 from rest_framework import status
 from rest_framework.response import Response
@@ -29,7 +30,7 @@ class MessageViewSet(mixins.CreateModelMixin, mixins.ListModelMixin,
 
     @swagger_auto_schema(
         request_body=CreateMessageSerializer,
-        responses={"200": openapi.Response(
+        responses={HTTP_200_OK: openapi.Response(
             description="Message",
             schema=MessageSerializer)})
     def create(self, request, *args, **kwargs):
