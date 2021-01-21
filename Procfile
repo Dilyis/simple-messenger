@@ -1,0 +1,1 @@
+web: gunicorn simple-messenger.wsgi --log-file -
