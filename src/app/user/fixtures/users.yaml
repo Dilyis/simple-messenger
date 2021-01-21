@@ -1,0 +1,29 @@
+- model: user.user
+  pk: 1
+  fields:
+    password: pbkdf2_sha256$100000$zo6HHoLMYsI1$yPEzQtxdGJQzq/XuBBv1aItPld1QTswLUWiV3rmjqfk=
+    last_login: null
+    is_superuser: true
+    first_name: 'Admin'
+    last_name: 'Test'
+    is_staff: true
+    is_active: true
+    date_joined: 2018-10-27 18:47:25.350275+00:00
+    email: super@super.com
+    groups: []
+    user_permissions: []
+
+- model: user.user
+  pk: 2
+  fields:
+    password: pbkdf2_sha256$100000$zo6HHoLMYsI1$yPEzQtxdGJQzq/XuBBv1aItPld1QTswLUWiV3rmjqfk=
+    last_login: null
+    is_superuser: false
+    first_name: 'User'
+    last_name: 'Test'
+    is_staff: false
+    is_active: true
+    date_joined: 2018-10-27 18:47:25.350275+00:00
+    email: t.testov@gmail.com
+    groups: []
+    user_permissions: []
