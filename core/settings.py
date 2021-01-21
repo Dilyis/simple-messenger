@@ -1,6 +1,7 @@
 import os
 from datetime import timedelta
 from os import getenv as env
+import dj_database_url
 
 from corsheaders.defaults import default_headers
 
@@ -97,12 +98,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+DATABASES = {'default': dj_database_url.config()}
 AUTH_USER_MODEL = 'user.User'
 
 # Password validation

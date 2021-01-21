@@ -27,6 +27,8 @@ Pillow = "*"
 openpyxl = "==2.6.2"
 dateparser = "*"
 gunicorn = "*"
+dj-database-url = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.7"
