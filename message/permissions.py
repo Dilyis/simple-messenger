@@ -5,7 +5,7 @@ class MessagePermissions(permissions.BasePermission):
     """Permissions for MessageViewSet.
     """
     anonymous_actions = []
-    authorized_actions = ['retrieve', 'create', 'list', 'destroy']
+    authorized_actions = ['retrieve', 'create', 'list', 'destroy', 'read']
 
     @staticmethod
     def _is_authenticated(request):

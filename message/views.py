@@ -6,7 +6,6 @@ from rest_framework.decorators import action
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import mixins
-from rest_framework.status import HTTP_200_OK
 from rest_framework.viewsets import GenericViewSet
 from rest_framework import status
 from rest_framework.response import Response
@@ -16,8 +15,9 @@ from message.permissions import MessagePermissions
 from message.serializers import MessageSerializer, CreateMessageSerializer
 
 
-class MessageViewSet(mixins.CreateModelMixin, mixins.ListModelMixin,
-                     mixins.DestroyModelMixin,  GenericViewSet):
+class MessageViewSet(
+        mixins.CreateModelMixin, mixins.ListModelMixin,
+        mixins.DestroyModelMixin, mixins.RetrieveModelMixin, GenericViewSet):
     queryset = Message.objects
     serializer_class = MessageSerializer
     permission_classes = (MessagePermissions, )
@@ -30,9 +30,8 @@ class MessageViewSet(mixins.CreateModelMixin, mixins.ListModelMixin,
 
     @swagger_auto_schema(
         request_body=CreateMessageSerializer,
-        responses={HTTP_200_OK: openapi.Response(
-            description="Message",
-            schema=MessageSerializer)})
+        responses={status.HTTP_201_CREATED: openapi.Response(
+            description="Message", schema=MessageSerializer)})
     def create(self, request, *args, **kwargs):
         serializer = CreateMessageSerializer(
             data=request.data, context=self.get_serializer_context())
@@ -43,7 +42,13 @@ class MessageViewSet(mixins.CreateModelMixin, mixins.ListModelMixin,
             self.get_serializer(serializer.instance).data,
             status=status.HTTP_201_CREATED, headers=headers)
 
-    def retrieve(self, request, *args, **kwargs):
+    @swagger_auto_schema(
+        request_body=MessageSerializer,
+        responses={status.HTTP_200_OK: openapi.Response(
+            description="Message",
+            schema=MessageSerializer)})
+    @action(methods=['post'], detail=True, url_path='read', url_name='read')
+    def read(self, request, *args, **kwargs):
         instance = self.get_object()
         if request.user == instance.receiver:
             instance.read()

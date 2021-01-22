@@ -98,7 +98,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
-DATABASES = {'default': dj_database_url.config()}
+ON_HEROKU = bool(int(env('ON_HEROKU', '1')))
+if ON_HEROKU:
+    DATABASE_URL = 'postgresql://<postgresql>'
+else:
+    DATABASE_URL = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
+
 AUTH_USER_MODEL = 'user.User'
 
 # Password validation

@@ -48,7 +48,8 @@ class UserViewSet(mixins.CreateModelMixin,
         }
         return Response(data, HTTP_201_CREATED)
 
-    @action(methods=['get'], detail=False, url_path='current', url_name='current')
+    @action(methods=['get'], detail=False, url_path='current',
+            url_name='current')
     @swagger_auto_schema(
         responses={HTTP_200_OK: openapi.Response(
             description="Current user",
@@ -76,9 +77,7 @@ class LoginView(GenericAPIView):
             '400': 'Validation error',
             '401': 'Authentication failed'})
     def post(self, request, *args, **kwargs):
-        """Authentication
-        HTTP_AUTHORIZATION: Token <TOKEN>
-        """
+        """Authentication"""
         s = self.get_serializer(data=request.data)
         s.is_valid(raise_exception=True)
         user = authenticate(email=s.data['email'], password=s.data['password'])
