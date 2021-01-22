@@ -57,7 +57,7 @@ class UserViewSet(mixins.CreateModelMixin,
         })
     def current(self, request, *args, **kwargs):
         s = self.get_serializer(request.user)
-        return Response(s.data, status=http.HTTPStatus.CREATED)
+        return Response(s.data, HTTP_200_OK)
 
 
 class LoginView(GenericAPIView):

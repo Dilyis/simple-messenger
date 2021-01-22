@@ -1,6 +1,6 @@
 from django.db.models import Q
 from drf_yasg import openapi
-from drf_yasg.utils import swagger_auto_schema
+from drf_yasg.utils import swagger_auto_schema, no_body
 from rest_framework.decorators import action
 
 from rest_framework.generics import ListAPIView
@@ -43,9 +43,9 @@ class MessageViewSet(
             status=status.HTTP_201_CREATED, headers=headers)
 
     @swagger_auto_schema(
+        operation_id='read_message', request_body=no_body,
         responses={status.HTTP_200_OK: openapi.Response(
-            description="Message",
-            schema=MessageSerializer)})
+            description="Message", schema=MessageSerializer)})
     @action(methods=['post'], detail=True, url_path='read', url_name='read')
     def read(self, request, *args, **kwargs):
         instance = self.get_object()
