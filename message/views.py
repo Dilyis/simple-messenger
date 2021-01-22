@@ -43,7 +43,6 @@ class MessageViewSet(
             status=status.HTTP_201_CREATED, headers=headers)
 
     @swagger_auto_schema(
-        request_body=MessageSerializer,
         responses={status.HTTP_200_OK: openapi.Response(
             description="Message",
             schema=MessageSerializer)})
