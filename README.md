@@ -1,9 +1,9 @@
 # simple-messenger
 
 
-Here is my api: https://messenger-for-heroku-p4jowicde.herokuapp.com/admin/
+Heroku link: https://simple-messenger-stage.herokuapp.com/admin/
 
-Also swagger is available by link: https://messenger-for-heroku-p4jowicde.herokuapp.com/docs/swagger/
+Also swagger is available by link: https://simple-messenger-stage.herokuapp.com/docs/swagger/
 
 API contains:
 - Login by email/password     
