@@ -8,7 +8,9 @@ Also swagger is available by link: https://messenger-for-heroku-p4jowicde.herok
 API contains:
 - Login by email/password     
 /login POST     
-Authentication through JWT
+Authentication through JWT.
+If you are not authenticated, only login method and create new user method is allowed. 
+
 - Write message    
 /messages POST
 - Get all messages for a specific user   
@@ -26,5 +28,6 @@ end-user doesn't see the message yet, but it is already marked as read)
 
 Also:
 - A common set of user's methods
+
 - GET one message    
 /messages/pk GET
